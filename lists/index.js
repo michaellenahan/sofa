@@ -98,7 +98,12 @@ function(head, req) {
           content : html,
           updated : new Date(row.value.created_at),
           author : row.value.author,
-          alternate : path.absolute(path.show('post', row.id))
+          alternate : path.absolute(path.show('post', row.id)),
+          //
+          // georss
+          //point : row.value.loc[1] + " " + row.value.loc[0] // geojson-style
+          point : row.value.latitude + " " + row.value.longitude
+          //
         });
         // send the entry to client
         send(feedEntry);

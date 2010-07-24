@@ -11,8 +11,14 @@
     <!-- form to create a post -->
     <form id="new-post" action="new.html" method="post">
       <h1>{{pageTitle}}</h1>
-        <p><label>Title</label>
+        <!-- amended for geosofa -->
+        <p><label>Place Name</label>
           <input type="text" size="50" name="title" value=""></p>
+        <p><label>Latitude</label>
+          <input type="text" size="50" name="latitude" value=""></p>
+        <p><label>Longitude</label>
+          <input type="text" size="50" name="longitude" value=""></p>
+        <!-- -->
       <p><label for="body">Body</label>
       <textarea name="body" rows="28" cols="80"></textarea></p>
       <p>
@@ -58,7 +64,8 @@
             var userCtx = r.userCtx;
             postForm = app.docForm("form#new-post", {
               id : {{ docid }},
-              fields : ["title", "body", "tags"],
+              //fields : ["title", "body", "tags"],
+              fields : ["title", "latitude", "longitude", "body", "tags"],
               template : {
                 type : "post",
                 format : "markdown",

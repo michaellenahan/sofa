@@ -15,7 +15,11 @@ function rfc3339(date) {
 };
 
 exports.header = function(data) {
-  var f = <feed xmlns="http://www.w3.org/2005/Atom"/>;
+  //
+  // georss
+  //var f = <feed xmlns="http://www.w3.org/2005/Atom"/>;
+  var f = <feed xmlns="http://www.w3.org/2005/Atom" xmlns:georss="http://www.georss.org/georss"/>;
+  //
   f.title = data.title;
   f.id = data.feed_id;
   f.link.@href = data.feed_link;
@@ -35,5 +39,11 @@ exports.entry = function(data) {
   entry.author = <author><name>{data.author}</name></author>;
   entry.link.@href = data.alternate;
   entry.link.@rel = "alternate";
+  //
+  // georss
+  // TODO: According the georss standard, this should be georss:point
+  // http://www.georss.org/simple#Point
+  entry.point = data.point;
+  //
   return entry;
 }
